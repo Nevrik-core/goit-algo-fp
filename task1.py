@@ -13,16 +13,6 @@ class LinkedList:
             current = next_node
         self.head = prev
 
-    def merge_sort(self, h):
-        if h is None or h.next is None:
-            return h
-        middle = self.get_middle(h)
-        next_to_middle = middle.next
-        middle.next = None
-        left = self.merge_sort(h)
-        right = self.merge_sort(next_to_middle)
-        sorted_list = self.merge(left, right)
-        return sorted_list
 
     def get_middle(self, head):
         if head is None:
@@ -33,6 +23,7 @@ class LinkedList:
             slow = slow.next
             fast = fast.next.next
         return slow
+    
 
     def merge(self, a, b):
         result = None
@@ -47,6 +38,19 @@ class LinkedList:
             result = b
             result.next = self.merge(a, b.next)
         return result
+    
+
+    def merge_sort(self, h):
+        if h is None or h.next is None:
+            return h
+        middle = self.get_middle(h)
+        next_to_middle = middle.next
+        middle.next = None
+        left = self.merge_sort(h)
+        right = self.merge_sort(next_to_middle)
+        sorted_list = self.merge(left, right)
+        return sorted_list
+
 
     def start_merge_sort(self):
         self.head = self.merge_sort(self.head)

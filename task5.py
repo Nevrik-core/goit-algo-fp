@@ -32,6 +32,8 @@ def draw_tree(tree, pos, colors):
     nx.draw(tree, pos, node_color=colors, with_labels=True, node_size=2500, labels=labels)
     plt.show()
 
+
+
 # Функція для рекурсивного обходу в глибину
 def dfs(graph, start, visited=None, path=None):
     if visited is None:
